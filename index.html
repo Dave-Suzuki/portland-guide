@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portland Guide 2026 — Dave家族版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F5F0E8;--stone:#E2D9C8;--moss:#3D5240;--rust:#B85C38;--ink:#1A1A18;--muted:#7A7060;--pale:#FAF7F2;--gold:#C4963A;--w:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--pale);color:var(--ink);font-family:'DM Sans','Noto Sans JP',sans-serif;font-weight:300;line-height:1.7}
+.hero{background:var(--moss);color:var(--cream);padding:80px 40px 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 35%,rgba(196,150,58,.18) 0%,transparent 65%);pointer-events:none}
+.hero-eye{font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:1.05;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{margin-top:18px;font-size:14px;color:rgba(245,240,232,.65);letter-spacing:.05em}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.htag{background:rgba(245,240,232,.1);border:1px solid rgba(245,240,232,.2);color:var(--cream);padding:5px 14px;border-radius:100px;font-size:12px}
+.nav{background:var(--cream);border-bottom:1px solid var(--stone);padding:0 32px;position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav::-webkit-scrollbar{display:none}
+.nav-inner{display:flex;min-width:max-content}
+.nav a{display:inline-block;padding:15px 16px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s}
+.nav a:hover{color:var(--rust);border-bottom-color:var(--rust)}
+.sec{padding:64px 40px;max-width:1160px;margin:0 auto}
+.bg-alt{background:var(--cream)}
+.sh{display:flex;align-items:baseline;gap:14px;margin-bottom:40px;padding-bottom:14px;border-bottom:1px solid var(--stone)}
+.sn{font-size:10px;font-weight:500;letter-spacing:.22em;color:var(--gold)}
+.st{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:400}
+.st em{font-style:italic;color:var(--rust)}
+.sub{margin-bottom:44px}
+.sl{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.sl::after{content:'';flex:1;height:1px;background:var(--stone)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.card{background:var(--w);border:1px solid var(--stone);border-radius:4px;overflow:hidden;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.08)}
+.ct{width:100%;height:186px;flex-shrink:0;overflow:hidden;position:relative}
+.ct-photo{background:var(--stone)}
+.ct-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.card:hover .ct-photo img{transform:scale(1.04)}
+.ct-emoji{background:linear-gradient(135deg,var(--stone) 0%,var(--cream) 100%);display:flex;align-items:center;justify-content:center;font-size:52px}
+.cb{padding:20px;flex:1;display:flex;flex-direction:column}
+.cn{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:6px}
+.cd{font-size:12.5px;color:var(--muted);margin-bottom:14px;line-height:1.65;flex:1}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.badge{font-size:10px;font-weight:500;letter-spacing:.04em;padding:3px 9px;border-radius:100px}
+.b-dog{background:#E8EFE6;color:var(--moss)}.b-togo{background:#FDF2EC;color:var(--rust)}
+.b-dm{background:#FEF8EC;color:var(--gold)}.b-jp{background:#ECEEF8;color:#4A5580}
+.b-hot{background:var(--rust);color:white}.b-free{background:var(--moss);color:white}
+.meta{display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--muted);padding-top:12px;border-top:1px solid var(--stone);margin-top:auto}
+.mr{display:flex;align-items:flex-start;gap:7px}
+.mi{flex-shrink:0;margin-top:1px}
+.sched{background:var(--w);border:1px solid var(--stone);border-radius:4px;overflow:hidden}
+.sd{border-bottom:1px solid var(--stone)}.sd:last-child{border-bottom:none}
+.sdh{background:var(--moss);color:var(--cream);padding:12px 24px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.si{display:flex;gap:16px;padding:14px 24px;border-bottom:1px solid var(--stone)}.si:last-child{border-bottom:none}
+.st2{font-size:10.5px;font-weight:500;color:var(--gold);min-width:52px;padding-top:3px;letter-spacing:.06em}
+.sb strong{font-size:13.5px;font-weight:500}.sb p{font-size:12px;color:var(--muted);margin-top:2px}
+.egrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px}
+.ec{background:var(--w);border:1px solid var(--stone);border-radius:4px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+.ed{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:600;color:var(--rust);line-height:1;text-align:center;min-width:44px}
+.em2{font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center}
+.ei strong{font-size:13px;font-weight:500;display:block;margin-bottom:3px}.ei p{font-size:11.5px;color:var(--muted)}
+.route{background:var(--w);border:1px solid var(--stone);border-radius:4px;padding:32px 32px 32px 52px;position:relative}
+.rl{position:absolute;left:36px;top:40px;bottom:40px;width:1px;background:var(--stone)}
+.rs{position:relative;padding-bottom:28px}.rs:last-child{padding-bottom:0}
+.rs::before{content:'';position:absolute;left:-23px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--rust);border:2px solid var(--w);box-shadow:0 0 0 1px var(--rust)}
+.rs strong{font-size:13.5px;font-weight:500}.rs p{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.8}
+.notice{background:var(--ink);color:var(--cream);padding:40px}
+.ni{max-width:1160px;margin:0 auto;display:flex;gap:40px;flex-wrap:wrap}
+.nit{flex:1;min-width:180px}
+.nit strong{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
+.nit p{font-size:12.5px;color:rgba(245,240,232,.65);line-height:1.7}
+footer{background:var(--cream);border-top:1px solid var(--stone);text-align:center;padding:28px;font-size:11.5px;color:var(--muted)}
+@media(max-width:640px){.hero{padding:56px 24px 48px}.sec{padding:48px 20px}.nav{padding:0 12px}.cards{grid-template-columns:1fr}.notice{padding:32px 20px}.route{padding:28px 20px 28px 44px}}
+</style></head><body>
+<div class="hero">
+<div class="hero-eye">Family Travel Guide · March 2026</div>
+<h1>Portland,<br><em>Oregon</em></h1>
+<p class="hero-sub">3/23 月 〜 3/24 火 &nbsp;·&nbsp; 一泊旅行 &nbsp;·&nbsp; 消費税ゼロ</p>
+<div class="hero-tags">
+  <span class="htag">🐾 犬連れOK多数</span>
+  <span class="htag">🌸 桜 見頃</span>
+  <span class="htag">🌷 チューリップ祭り開催中</span>
+  <span class="htag">🍽️ Portland Dining Month</span>
+</div></div>
+<nav class="nav"><div class="nav-inner">
+<a href="#restaurants">レストラン</a><a href="#sweets">スイーツ</a>
+<a href="#cafes">カフェ</a><a href="#shops">ショッピング</a>
+<a href="#sights">観光</a><a href="#events">イベント</a>
+<a href="#daytrip">周辺</a><a href="#route">道中</a><a href="#schedule">行程</a>
+</div></nav>
+<div id="restaurants" class="bg-alt"><div class="sec">
+<div class="sh"><span class="sn">01</span><h2 class="st">レスト<em>ラン</em></h2></div>
+<div class="sub"><div class="sl">🌅 朝食 · ブランチ</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/tinshed.jpg" alt="Tin Shed Garden Cafe" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🌿</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れパティオ</span><span class="badge b-togo">テイクアウト</span></div>
+<div class="cn">Tin Shed Garden Cafe</div>
+<div class="cd">ポートランド最有名の犬フレンドリーパティオ。ワンコ専用メニューあり。Guy Fieri訪問歴あり。週末は予約推奨。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>1438 NE Alberta St</span></div><div class="mr"><span class="mi">🕐</span><span>月〜金 8–14時 ／ 土日 7–15時</span></div><div class="mr"><span class="mi">📞</span><span>(503) 288-6966</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/fried_egg.jpg" alt="Fried Egg I'm In Love" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🥚</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れパティオ</span><span class="badge b-togo">テイクアウト</span></div>
+<div class="cn">Fried Egg I'm In Love</div>
+<div class="cd">朝食サンドの名店。Mississippi店にはヒートランプ付き犬フレンドリーパティオが2つ。フルバーも充実。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>3207 N Mississippi Ave</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 8–14時</span></div></div>
+</div>
+</div>
+</div></div>
+<div class="sub"><div class="sl">🍣 日本食 · 和食</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/takibi.jpg" alt="Takibi Snow Peak" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🔥</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本食</span><span class="badge b-dm">Dining Month $55</span></div>
+<div class="cn">Takibi（Snow Peak内）</div>
+<div class="cd">Snow Peak本社ビル内の薪火和食。炉端焼き・ラーメン・オマカセ。日本酒充実。Dining Month $55コースあり。火曜定休。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>2275 NW Flanders St</span></div><div class="mr"><span class="mi">🕐</span><span>月・水〜日 11:30–15:00 / 16:30–20:30（火曜定休）</span></div><div class="mr"><span class="mi">📞</span><span>(971) 888-5713</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/murata.jpg" alt="Murata Restaurant" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🦑</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 老舗 1988年</span></div>
+<div class="cn">Murata Restaurant</div>
+<div class="cd">1988年創業の老舗寿司バー。毎日変わる黒板メニューにPNWの新鮮魚介が並ぶ。ポートランド日本食の定番。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>200 SW Market St</span></div><div class="mr"><span class="mi">🕐</span><span>月〜金 11:30–14:00 / 17:00–21:00</span></div><div class="mr"><span class="mi">📞</span><span>(503) 227-0080</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/afuri.jpg" alt="AFURI Izakaya" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍜</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本食</span><span class="badge b-togo">テイクアウト</span></div>
+<div class="cn">AFURI Izakaya</div>
+<div class="cd">柚子塩ラーメンで名高い阿夫利のポートランド店。居酒屋スタイルで日本酒・クラフトビールとともに。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>923 SW Oak St</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 11:30–22:00</span></div></div>
+</div>
+</div>
+</div></div>
+<div class="sub"><div class="sl">🌶️ タイ料理 · アジア料理</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/nongs.jpg" alt="Nong's Khao Man Gai" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍚</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-hot">テイクアウト最強</span><span class="badge b-dog">🐾 外席OK</span></div>
+<div class="cn">Nong's Khao Man Gai</div>
+<div class="cd">タイチキンライス一品勝負の神話的名店。紙包みを広げる儀式から始まる至福のランチ。桜の公園でのピクニックに最高。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>609 SE Ankeny St C</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 9–21時</span></div><div class="mr"><span class="mi">📞</span><span>(503) 740-2907</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/hatyai.jpg" alt="Hat Yai" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍗</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-togo">テイクアウト向き</span></div>
+<div class="cn">Hat Yai</div>
+<div class="cd">南タイ式フライドチキン専門。チキン＋パンダンロティ＋スティッキーライスの組み合わせが王道。帰り道のテイクアウトにも。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>1605 NE Killingsworth St</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 11:30–15:00 / 16:00–21:00（金土は22:00まで）</span></div><div class="mr"><span class="mi">📞</span><span>(503) 764-9701</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/eem.jpg" alt="Eem Thai BBQ" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🥩</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 パティオOK</span></div>
+<div class="cn">Eem — Thai BBQ & Cocktails</div>
+<div class="cd">タイBBQ×カクテルバーの革命的コラボ。スモーキーな豚バラKrapaoと白いカリーが看板。広いパティオで犬連れに最適。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>3808 N Williams Ave #127</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 11–21時（金土は22時まで）</span></div><div class="mr"><span class="mi">📞</span><span>(971) 295-1645</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/gado.jpg" alt="Gado Gado" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🥥</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 外席OK</span><span class="badge b-hot">Keith Lee 10点</span></div>
+<div class="cn">Gado Gado</div>
+<div class="cd">インドネシア料理の傑作。Keith Lee 10点満点、James Beard候補。ライステーブル4コースで大胆なフレーバーを体験。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>1801 NE Cesar E Chavez Blvd</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 17–21時</span></div><div class="mr"><span class="mi">📞</span><span>(503) 206-8778</span></div></div>
+</div>
+</div>
+</div></div>
+<div class="sub"><div class="sl">🍝 イタリアン · フレンチ</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/nostrana.jpg" alt="Nostrana" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍕</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dm">James Beard 7回ノミネート</span></div>
+<div class="cn">Nostrana</div>
+<div class="cd">2005年創業の殿堂入り薪窯ピザ＆パスタ。「ポートランドのネグローニの聖地」とも。日曜定休。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>1401 SE Morrison St #101</span></div><div class="mr"><span class="mi">🕐</span><span>月〜木 17–21時 ／ 金土 16:30–22時（日曜定休）</span></div><div class="mr"><span class="mi">📞</span><span>(503) 234-2427</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/campana.jpg" alt="Campana" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍝</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-hot">今イチ推し</span></div>
+<div class="cn">Campana</div>
+<div class="cd">今ポートランドで最も話題のパスタ専門店。自家製パスタのBoar Pappardelle・Tortelli di Zuccaは必食。月火定休。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>901 NE Oneonta St</span></div><div class="mr"><span class="mi">🕐</span><span>水〜金 17–21時 ／ 土 16–21時 ／ 日 16–20時（月火定休）</span></div><div class="mr"><span class="mi">📞</span><span>(503) 841-6195</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/sthonore.jpg" alt="St. Honore Boulangerie" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🥐</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-togo">朝テイクアウトに最適</span></div>
+<div class="cn">St. Honoré Boulangerie</div>
+<div class="cd">本格フレンチベーカリー。早朝から焼きたてのバゲット・クロワッサンが揃う。火曜朝の旅立ちに最適。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>2335 NW Thurman St（他3店舗あり）</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 7–18時</span></div></div>
+</div>
+</div>
+</div></div>
+<div class="sub"><div class="sl">🦪 シーフード</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/jacqueline.jpg" alt="Jacqueline oyster bar" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🌊</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 外席OK</span><span class="badge b-hot">★ 4.8</span></div>
+<div class="cn">Jacqueline</div>
+<div class="cd">当日水揚げの生牡蠣が17–18時は$1のハッピーアワー。Wes Anderson「Life Aquatic」をモチーフにした可愛い内装。要予約。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>2500 SE Clinton St</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 17–21時（HH 17–18時）</span></div><div class="mr"><span class="mi">📞</span><span>(503) 327-8637</span></div></div>
+</div>
+</div>
+</div></div>
+<div class="sub"><div class="sl">🍙 おにぎり · サンドイッチ</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/tanaka.jpg" alt="TANAKA katsu sandwich" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🥪</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本系</span><span class="badge b-togo">テイクアウト</span></div>
+<div class="cn">TANAKA</div>
+<div class="cd">大阪スタイルのカツサンド専門。自家製ミルクブレッドに分厚いカツ。海老サンドも人気。旅の弁当にも◎。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>678 SW 12th Ave</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 8–19時</span></div><div class="mr"><span class="mi">📞</span><span>(503) 764-9280</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/yokai.jpg" alt="Yokai Musubi onigiri" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍙</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本系</span><span class="badge b-togo">テイクアウト</span></div>
+<div class="cn">Yokai Musubi</div>
+<div class="cd">ポートランド最古参のおにぎり・ムスビ専門店。コシヒカリ使用、日本×ハワイアンフュージョンスタイル。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>SE Portland（要確認）</span></div></div>
+</div>
+</div>
+</div></div>
+</div></div>
+<div id="sweets" class="sec">
+<div class="sh"><span class="sn">02</span><h2 class="st">スイーツ<em>・デザート</em></h2></div>
+<div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/saltandstraw.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍦</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-hot">ポートランド発祥</span></div>
+<div class="cn">Salt & Straw</div>
+<div class="cd">ポートランド生まれのクリエイティブアイスクリーム。ハニーラベンダー・ペア&ブルーチーズなど季節限定フレーバーが自由すぎる。試食し放題。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>838 NW 23rd Ave</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 11–23時</span></div><div class="mr"><span class="mi">📞</span><span>(971) 271-8168</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/pips.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍩</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-togo">注文後即揚げ</span></div>
+<div class="cn">Pip's Original Doughnuts & Chai</div>
+<div class="cd">注文を受けてから揚げるミニドーナツ×チャイの専門店。チャイフライトで好みを探す楽しさ。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>4759 NE Fremont St</span></div><div class="mr"><span class="mi">🕐</span><span>月〜金 8–14時 ／ 土日 8–16時</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/pix.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🎂</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-hot">24時間365日</span></div>
+<div class="cn">Pix Patisserie / Pix-O-Matic</div>
+<div class="cd">フランス修業シェフの本格パティスリー。深夜もPix-O-Matic自販機でケーキが買える唯一無二の存在。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>2225 E Burnside St</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 5:00–3:00（翌日）</span></div><div class="mr"><span class="mi">📞</span><span>(971) 271-7166</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/maiko.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍵</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 抹茶専門</span></div>
+<div class="cn">Premium Matcha Cafe Maiko</div>
+<div class="cd">オレゴン唯一の本格抹茶ソフトクリーム専門店。宇治産抹茶使用の濃厚なドリンク・スイーツが揃う。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>3416 SE Cesar Estrada Chavez Blvd</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/mikiko.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🌸</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本系</span></div>
+<div class="cn">Mikiko Mochi Donuts</div>
+<div class="cd">米粉グルテンフリーのモチモチドーナツ。ゆずFunfetti・抹茶・黒ゴマなど日本感覚のフレーバーが豊富。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>SE Portland（要確認）</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/bluestar.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍩</span>'">
+</div>
+<div class="cb">
+<div class="badges"></div>
+<div class="cn">Blue Star Donuts</div>
+<div class="cd">ブリオッシュ生地の大人向けドーナツ。ヘーゼルナッツ・コーヒーグレーズなど洗練されたフレーバーが揃う。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>1237 SW Washington St（他店舗あり）</span></div></div>
+</div>
+</div>
+</div></div>
+<div id="cafes" class="bg-alt"><div class="sec">
+<div class="sh"><span class="sn">03</span><h2 class="st">カフェ<em>・コーヒー</em></h2></div>
+<div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/stumptown.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>☕</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-hot">サードウェーブ発祥</span></div>
+<div class="cn">Stumptown Coffee Roasters</div>
+<div class="cd">サードウェーブコーヒームーブメントの発祥地。シングルオリジンへの真剣な姿勢が世界を変えた。本店限定ブレンドをぜひ。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>128 SW 3rd Ave</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 7–17時</span></div><div class="mr"><span class="mi">📞</span><span>(855) 711-3385</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/heart.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🏭</span>'">
+</div>
+<div class="cb">
+<div class="badges"></div>
+<div class="cn">Heart Coffee Roasters</div>
+<div class="cd">倉庫を改装した美しい空間。豆へのこだわりが強く、日本のコーヒーメディアにも頻出する名店。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>537 SW 12th Ave（他店舗あり）</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 7–17時</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/coava.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🌿</span>'">
+</div>
+<div class="cb">
+<div class="badges"></div>
+<div class="cn">Coava Coffee Roasters</div>
+<div class="cd">工場を改装した天井の高い美しい空間。壁面を覆う植物が印象的。豆の品質も最高峰。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>1300 SE Grand Ave</span></div></div>
+</div>
+</div>
+</div></div></div>
+<div id="shops" class="sec">
+<div class="sh"><span class="sn">04</span><h2 class="st">ショッ<em>ピング</em></h2></div>
+<div class="sub"><div class="sl">🇯🇵 日本系セレクト</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/muji.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>⛺</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本ブランド</span></div>
+<div class="cn">MUJI Portland</div>
+<div class="cd">西海岸最大の無印良品（11,000 sq ft）。ロボットバリスタ「Jarvis」が常駐。日本仕様の文具・アロマ・家具が消費税ゼロで揃う。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>621 SW 5th Ave</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 10–20時</span></div><div class="mr"><span class="mi">📞</span><span>(503) 867-8156</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/kiriko.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🪡</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本人オーナー</span></div>
+<div class="cn">Kiriko Made</div>
+<div class="cd">古い着物地をリメイクしたバッグ・クッション・テキスタイル。「もったいない」精神が宿る唯一無二の店。Mizuba Tea Co.（宇治産抹茶）も取扱。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>1001 SW Morrison St</span></div><div class="mr"><span class="mi">🕐</span><span>月〜木 11–18時 ／ 金土 11–19時 ／ 日 11–18時</span></div><div class="mr"><span class="mi">📞</span><span>(503) 222-0335</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/kinokuniya.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>📚</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本語書籍</span></div>
+<div class="cn">Kinokuniya Books</div>
+<div class="cd">日本語雑誌・書籍・文房具・フィギュア・ガチャが揃う。日本の最新カルチャーをアメリカでキャッチできる貴重な場所。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>10500 SW Beaverton-Hillsdale Hwy</span></div></div>
+</div>
+</div>
+</div></div>
+<div class="sub"><div class="sl">🧂 食材 · キッチン用品</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/meadow.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍫</span>'">
+</div>
+<div class="cb">
+<div class="badges"></div>
+<div class="cn">The Meadow</div>
+<div class="cd">全米最大クラスのクラフト塩コレクション＋アルティザンチョコ＋ビターズ。壁一面のチョコレートは圧巻。お土産の宝庫。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>805 NW 23rd Ave</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 10–20時</span></div><div class="mr"><span class="mi">📞</span><span>(503) 305-3388</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/cutlery.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🔪</span>'">
+</div>
+<div class="cb">
+<div class="badges"></div>
+<div class="cn">Hawthorne Cutlery</div>
+<div class="cd">ナイフ専門店。研ぎサービスも。日本製包丁のセレクションが充実。消費税ゼロなのでシアトルより断然お得。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>3208 SE Hawthorne Blvd</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/kaboodle.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍳</span>'">
+</div>
+<div class="cb">
+<div class="badges"></div>
+<div class="cn">Kitchen Kaboodle</div>
+<div class="cd">1975年創業のポートランド老舗キッチンストア。全米Top25にも選ばれた地元密着の名店。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>404 NW 23rd Ave</span></div></div>
+</div>
+</div>
+</div></div>
+<div class="sub"><div class="sl">📖 本 · 雑貨</div><div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/powells.jpg" alt="Powell's City of Books" loading="lazy"
+    onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Powell%27s_Books%2C_Portland%2C_OR_-_panoramio.jpg/1200px-Powell%27s_Books%2C_Portland%2C_OR_-_panoramio.jpg';this.onerror=function(){this.parentElement.className='ct ct-emoji';this.outerHTML='<span>📚</span>'}">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-hot">世界最大の独立系書店</span></div>
+<div class="cn">Powell's City of Books</div>
+<div class="cd">一棟まるごと本で埋め尽くされた迷宮。新刊と古書が同じ棚に並ぶ天国。カフェ内蔵。地図を持って3時間迷うべし。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>1005 W Burnside St</span></div><div class="mr"><span class="mi">🕐</span><span>毎日 10–21時</span></div><div class="mr"><span class="mi">📞</span><span>(800) 878-7323</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/oblation.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>📄</span>'">
+</div>
+<div class="cb">
+<div class="badges"></div>
+<div class="cn">Oblation Papers & Press</div>
+<div class="cd">手製紙・活版印刷カード・文房具の専門店。ギフト包装も美しく、旅の記念品やお土産に最適。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>516 NW 12th Ave</span></div></div>
+</div>
+</div>
+</div></div></div>
+<div id="sights" class="bg-alt"><div class="sec">
+<div class="sh"><span class="sn">05</span><h2 class="st">観光<em>スポット</em></h2></div>
+<div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Portland_Japanese_Garden_Spring_2007.jpg/1200px-Portland_Japanese_Garden_Spring_2007.jpg" alt="Portland Japanese Garden" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>⛩️</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-jp">🇯🇵 日本庭園</span></div>
+<div class="cn">Portland Japanese Garden</div>
+<div class="cd">「日本国外で最も美しい日本庭園」と称される本格派。盆栽テラスと茶室あり。月曜は12時オープンに注意。要予約推奨。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>611 SW Kingston Ave</span></div><div class="mr"><span class="mi">🕐</span><span>月 12–17:30 ／ 火〜日 10–17:30</span></div><div class="mr"><span class="mi">💰</span><span>大人 $22.50</span></div><div class="mr"><span class="mi">📞</span><span>(503) 223-1321</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Portland_waterfront_March_2013.jpg/1200px-Portland_waterfront_March_2013.jpg" alt="Portland cherry blossoms waterfront" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🌸</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れOK</span><span class="badge b-hot">今が見頃！</span></div>
+<div class="cn">Japanese American Historical Plaza</div>
+<div class="cd">ウォーターフロントの桜並木が3月下旬〜4月上旬に満開。Nong'sのテイクアウトでピクニックに最適。入場無料。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>NW Naito Pkwy & Couch St</span></div><div class="mr"><span class="mi">💰</span><span>無料</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Witch%27s_Castle_Lower_Macleay_Park_Portland_Oregon.jpg/1200px-Witch%27s_Castle_Lower_Macleay_Park_Portland_Oregon.jpg" alt="Witch's Castle Forest Park Portland" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🌲</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れOK</span><span class="badge b-free">無料</span></div>
+<div class="cn">Forest Park / Witch's Castle</div>
+<div class="cd">5,200エーカーの都市森林。苔むした石造りの廃墟「Witch's Castle」まで短いトレイルで到達可能。朝の散歩に最適。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>Lower Macleay Park, NW 30th Ave</span></div><div class="mr"><span class="mi">💰</span><span>無料</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Pittock_Mansion_Portland_Oregon.jpg/1200px-Pittock_Mansion_Portland_Oregon.jpg" alt="Pittock Mansion Portland" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🏔️</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れOK</span><span class="badge b-free">無料</span></div>
+<div class="cn">Pittock Mansion</div>
+<div class="cd">Mt. Hood・Mt. St. Helens・Mt. Rainierなど5火山と市街が一望できる丘の上の歴史的邸宅。庭園・展望台は無料。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>3229 NW Pittock Dr</span></div><div class="mr"><span class="mi">💰</span><span>庭園・展望台 無料</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/satmarket.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🎪</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れOK</span><span class="badge b-free">入場無料</span></div>
+<div class="cn">Portland Saturday Market</div>
+<div class="cd">3月から始まるウォーターフロントの屋外マーケット。地元アーティスト・クラフト作家が一堂に集結。犬連れ歓迎。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>2 SW Naito Pkwy</span></div><div class="mr"><span class="mi">🕐</span><span>土 10–17時 ／ 日 11–16:30</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/mttabor.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🐾</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 オフリースOK</span><span class="badge b-free">無料</span></div>
+<div class="cn">Mt. Tabor Park</div>
+<div class="cd">市内に実在する火山の丘公園。ドッグオフリースエリアあり。見晴らしもよく、地元犬連れ民の聖地。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>SE 60th Ave & Salmon St</span></div><div class="mr"><span class="mi">💰</span><span>無料</span></div></div>
+</div>
+</div>
+</div></div></div>
+<div id="events" class="sec">
+<div class="sh"><span class="sn">06</span><h2 class="st">イベント<em>・3月</em></h2></div>
+<div class="egrid">
+<div class="ec"><div><div class="ed">23</div><div class="em2">Mon</div></div><div class="ei"><strong>🏀 Trail Blazers vs Brooklyn Nets</strong><p>Moda Center · 19:00 · チケット要</p></div></div>
+<div class="ec"><div><div class="ed">23</div><div class="em2">Mon</div></div><div class="ei"><strong>🩰 Snow White（バレエ）</strong><p>Newmark Theatre · 19:00 · チケット要</p></div></div>
+<div class="ec"><div><div class="ed">23</div><div class="em2">Mon</div></div><div class="ei"><strong>🎤 無料コメディナイト</strong><p>EastBurn Public House · 20:00 · 入場無料</p></div></div>
+<div class="ec"><div><div class="ed">24</div><div class="em2">Tue</div></div><div class="ei"><strong>🎸 The Barr Brothers</strong><p>Mississippi Studios · チケット要</p></div></div>
+<div class="ec"><div><div class="ed" style="font-size:1.3rem">3月中</div><div class="em2">March</div></div><div class="ei"><strong>🍽️ Portland Dining Month</strong><p>100以上のレストランで$35/$55の特別3コース · 要予約</p></div></div>
+<div class="ec"><div><div class="ed" style="font-size:1.1rem">〜4/26</div><div class="em2">開催中</div></div><div class="ei"><strong>🌷 Wooden Shoe Tulip Festival</strong><p>Woodburn（南30分）· 犬OK 🐾 · 平日 $14</p></div></div>
+</div></div>
+<div id="daytrip" class="bg-alt"><div class="sec">
+<div class="sh"><span class="sn">07</span><h2 class="st">周辺<em>デイトリップ</em></h2></div>
+<div class="cards">
+<div class="card">
+<div class="ct ct-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Multnomah_Falls_in_the_Columbia_River_Gorge.jpg/800px-Multnomah_Falls_in_the_Columbia_River_Gorge.jpg" alt="Multnomah Falls Columbia River Gorge" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🌊</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れOK</span><span class="badge b-hot">最推薦</span></div>
+<div class="cn">Columbia River Gorge + Hood River</div>
+<div class="cd">東方向。Multnomah Falls（30分）→ Hood River（1時間）の王道ルート。pFriem Brewery・Solstice Pizza・KickStand Coffee、すべて犬連れOK。</div>
+<div class="meta"><div class="mr"><span class="mi">🚗</span><span>Multnomah Falls 約30分 ／ Hood River 約1時間</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Wooden_Shoe_Tulip_Farm_2013.jpg/1200px-Wooden_Shoe_Tulip_Farm_2013.jpg" alt="Wooden Shoe Tulip Farm Woodburn Oregon" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🌷</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れOK</span><span class="badge b-hot">今開催中！</span></div>
+<div class="cn">Wooden Shoe Tulip Farm（Woodburn）</div>
+<div class="cd">40エーカーの圧巻チューリップ畑。現在開催中（〜4/26）。乗り物・食べ物・ワインテイスティングも充実。Mt. Hood眺望も美しい。</div>
+<div class="meta"><div class="mr"><span class="mi">📍</span><span>33814 S Meridian Rd, Woodburn</span></div><div class="mr"><span class="mi">🚗</span><span>ポートランドから南約30分（I-5）</span></div><div class="mr"><span class="mi">💰</span><span>平日 $14（要時間指定チケット）</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/mcminnville.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🍷</span>'">
+</div>
+<div class="cb">
+<div class="badges"></div>
+<div class="cn">McMinnville（ワインカントリー）</div>
+<div class="cd">南西45分。Bistro Maison（本格フレンチ）、Okta（2024年JBAファイナリスト）、Willamette Valleyのピノノワールワイナリーめぐり。</div>
+<div class="meta"><div class="mr"><span class="mi">🚗</span><span>ポートランドから南西約45分</span></div></div>
+</div>
+</div>
+<div class="card">
+<div class="ct ct-photo">
+  <img src="images/edgefield.jpg" alt="" loading="lazy"
+    onerror="this.parentElement.className='ct ct-emoji';this.outerHTML='<span>🏛️</span>'">
+</div>
+<div class="cb">
+<div class="badges"><span class="badge b-dog">🐾 犬連れOK</span></div>
+<div class="cn">McMenamins Edgefield（Troutdale）</div>
+<div class="cd">東20分。歴史的農場を再生したリゾート施設。広大な敷地で犬の散歩も◎。複数のバー・レストランがあり近場のエスケープに最適。</div>
+<div class="meta"><div class="mr"><span class="mi">🚗</span><span>ポートランドから東約20分</span></div></div>
+</div>
+</div>
+</div></div></div>
+<div id="route" class="sec">
+<div class="sh"><span class="sn">08</span><h2 class="st">I-5 道中<em>スポット</em></h2></div>
+<div class="route">
+<div class="rl"></div>
+<div class="rs"><strong>🏠 シアトル / Kenmore 出発</strong><p>I-5 South へ。ポートランドまで約3〜3.5時間</p></div>
+<div class="rs"><strong>🦪 オリンピア（シアトルから約1時間）</strong><p>
+<strong>Chelsea Farms Oyster Bar</strong> — 222 Capitol Way N · 月〜木 15–20時 ／ 金 12–20時 · 自社牡蠣床直営<br>
+<strong>Encore Chocolates &amp; Teas</strong> — 400種のアルティザンチョコ・300種ティー<br>
+<strong>Buck's Spice</strong> — アメリカ最古クラスのスパイス専門店
+</p></div>
+<div class="rs"><strong>🏰 バンクーバー WA（ポートランド手前10分）</strong><p>
+<strong>Fort Vancouver National Historic Site</strong> — 無料・犬OK 🐾<br>
+<strong>Vancouver Waterfront Park</strong> — コロンビア川沿い散歩・犬OK 🐾<br>
+<strong>Old Tbilisi Georgian Cuisine</strong> — ハチャプリ・ヒンカリのジョージア料理
+</p></div>
+<div class="rs"><strong>🌹 Portland 到着</strong><p>消費税ゼロのショッピング天国・グルメ天国へ！</p></div>
+<div class="rs"><strong>【帰路】🦪 オリンピア Chelsea Farms（15時〜）</strong><p>帰り道に立ち寄って旅の締めくくり。月〜木 15:00オープン。</p></div>
+<div class="rs"><strong>🏠 シアトル / Kenmore 帰着</strong><p>おつかれさまでした！</p></div>
+</div></div>
+<div id="schedule" class="bg-alt"><div class="sec">
+<div class="sh"><span class="sn">09</span><h2 class="st">おすすめ<em>行程</em></h2></div>
+<div class="sched">
+<div class="sd">
+<div class="sdh">月曜日 · March 23 (Mon)</div>
+<div class="si"><div class="st2">朝</div><div class="sb"><strong>Tin Shed Garden Cafe</strong><p>ポートランド最有名の犬フレンドリーパティオで朝食。ワンコ専用メニューあり 🐾</p></div></div>
+<div class="si"><div class="st2">午前</div><div class="sb"><strong>Forest Park / Witch's Castle 散歩</strong><p>苔むした石造りの廃墟まで緑豊かなトレイル 🐾</p></div></div>
+<div class="si"><div class="st2">昼</div><div class="sb"><strong>Nong's Khao Man Gai → 桜ウォーターフロントでピクニック</strong><p>テイクアウトして満開の桜の下でランチ 🌸🐾</p></div></div>
+<div class="si"><div class="st2">午後</div><div class="sb"><strong>Kiriko Made → MUJI → Powell's → The Meadow</strong><p>日系リメイクテキスタイル → 西海岸最大無印 → 世界最大書店 → 塩&amp;チョコの殿堂</p></div></div>
+<div class="si"><div class="st2">夕方</div><div class="sb"><strong>Jacqueline ハッピーアワー（17時〜$1牡蠣）</strong><p>外席で犬もOK 🐾</p></div></div>
+<div class="si"><div class="st2">夜</div><div class="sb"><strong>Gado Gado でディナー</strong><p>インドネシア料理。Keith Lee 10点満点。外席犬OK 🐾</p></div></div>
+</div>
+<div class="sd">
+<div class="sdh">火曜日 · March 24 (Tue)</div>
+<div class="si"><div class="st2">早朝</div><div class="sb"><strong>St. Honoré Boulangerie でテイクアウト</strong><p>焼きたてバゲット・クロワッサンを持って出発</p></div></div>
+<div class="si"><div class="st2">午前</div><div class="sb"><strong>🌷 Wooden Shoe Tulip Festival（Woodburn）</strong><p>南30分。40エーカーのチューリップ畑。犬OK 🐾 · 平日 $14</p></div></div>
+<div class="si"><div class="st2">昼〜午後</div><div class="sb"><strong>Hood River ドライブ or Hat Yai テイクアウト</strong><p>I-84で渓谷を抜けてpFriem Breweryの川沿いデッキでランチ 🐾</p></div></div>
+<div class="si"><div class="st2">帰路</div><div class="sb"><strong>I-5 北上 → オリンピア Chelsea Farms（15時〜）</strong><p>自社牡蠣床直営の牡蠣バーで旅の締め 🦪</p></div></div>
+</div>
+</div>
+</div></div>
+<div class="notice"><div class="ni">
+<div class="nit"><strong>💡 消費税ゼロ</strong><p>オレゴン州は州税・地方税ともに消費税なし。シアトルとの差額が大きいものを優先して。</p></div>
+<div class="nit"><strong>🍽️ Dining Month</strong><p>3月中は100以上のレストランで$35/$55の3コースを提供中。OpenTableで要予約。TakibiはDining Month $55コースあり。</p></div>
+<div class="nit"><strong>🌸 桜情報</strong><p>Japanese American Historical Plazaのウォーターフロント桜が3月下旬〜4月上旬に見頃。ピクニックランチに最適。</p></div>
+<div class="nit"><strong>🐾 犬連れTips</strong><p>パティオで犬連れOKな店が多数。Tin Shed・Eem・Gado Gadoは特に犬フレンドリー。Forest ParkとMt. Tabor Parkもおすすめ。</p></div>
+</div></div>
+<footer>Portland Guide 2026 · Dave家族版 · Compiled with ♥ · 消費税ゼロのオレゴン州でよい旅を 🌹</footer>
+</body></html>
